@@ -1,8 +1,9 @@
 /*
  * A pure javascript class for paginating through any number of DOM elements
+ * v1.0.0
  *
  * @copyright	Copyright (C) 2011 Simplify Your Web, Inc. All rights reserved.
- * @license		GNU General Public License version 3 or later; see LICENSE.txt
+ * @license	GNU General Public License version 3 or later; see LICENSE.txt
  */
 class purePajinate {
 	constructor(options) {
