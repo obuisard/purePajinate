@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 ```
 ## Browser Support
 
-When using the Ecmascript 5 version, supports goes all the way back to Internet Explorer 9.
+When using the Ecmascript 5 version, supports goes all the way back to Internet Explorer 10.
 I have used [Babel](https://babeljs.io/) to convert the code into Ecmascript 5 compatible code.
 
 ## License
