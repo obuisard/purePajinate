@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>PurePajinate examples</title>
+
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() {
+	  	var example_1 = new purePajinate({ 
+			containerSelector: '.example_1 .items', 
+			itemSelector: '.example_1 .items > div', 
+			navigationSelector: '.example_1 .page_navigation',
+			itemsPerPage: 3 
+		});
+
+		var example_2 = new purePajinate({ 
+			containerSelector: '.example_2 .items', 
+			itemSelector: '.example_2 .items > div', 
+			navigationSelector: '.example_2 .page_navigation',
+			wrapAround: true,
+			showFirstLast: true,
+			itemsPerPage: 2 
+		});
+
+		var example_3 = new purePajinate({ 
+			containerSelector: '.example_3 .items', 
+			itemSelector: '.example_3 .items > div', 
+			navigationSelector: '.example_3 .page_navigation',
+			wrapAround: true,
+			pageLinksToDisplay: 3,
+			itemsPerPage: 1,
+			startPage: 4
+		});
+	});
+</script>
+
+<style>
+	.example_1, .example_2, .example_3 {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		background-color: aliceblue;
+		margin: 20px 0;
+	}
+
+	.example_2 .item {
+		transition: opacity .5s ease-out;
+		visibility: visible;
+		opacity: 1;
+	}
+
+	.example_2 .item.hidden {
+		visibility: hidden;
+		opacity: 0;
+	}
+
+	.item {
+		width: 162px;
+		height: 100px;
+		padding: 10px;
+		margin: 10px;
+	}
+
+	.item1 {
+		background-color: #D6D65B;
+	}
+	.item2 {
+		background-color: #5BD6AD;
+	}
+	.item3 {
+		background-color: #5B99D6;
+	}
+	.item4 {
+		background-color: #D65BC1;
+	}
+	.item5 {
+		background-color: #D65B5B;
+	}
+	.item6 {
+		background-color: #D6995B;
+	}
+
+	.page_navigation { width: 100%; text-align: center }
+	.page_navigation ul { padding: 0 }
+	.page_navigation li { display: inline; padding: 5px; }
+	.page_navigation li.active_page { background-color: #cee4f7 }
+</style>
+</head>
+<body>
+	<h1>PurePajinate examples</h1>
+	<h2>Default configuration</h2>
+	<div class="example_1">
+		<div class="items">
+			<div class="item item1">
+				<div class="title">Slide 1</div>
+			</div>
+			<div class="item item2">
+				<div class="title">Slide 2</div>
+			</div>
+			<div class="item item3">
+				<div class="title">Slide 3</div>
+			</div>
+			<div class="item item4">
+				<div class="title">Slide 4</div>
+			</div>
+			<div class="item item5">
+				<div class="title">Slide 5</div>
+			</div>
+			<div class="item item6">
+				<div class="title">Slide 6</div>
+			</div>
+		</div>
+		<div class="page_navigation"></div>
+	</div>
+	<h2>Wrap around, multiple control panels, CSS transition</h2>
+	<div class="example_2">
+		<div class="page_navigation"></div>
+		<div class="items">
+			<div class="item item1">
+				<div class="title">Slide 1</div>
+			</div>
+			<div class="item item2">
+				<div class="title">Slide 2</div>
+			</div>
+			<div class="item item3">
+				<div class="title">Slide 3</div>
+			</div>
+			<div class="item item4">
+				<div class="title">Slide 4</div>
+			</div>
+			<div class="item item5">
+				<div class="title">Slide 5</div>
+			</div>
+			<div class="item item6">
+				<div class="title">Slide 6</div>
+			</div>
+		</div>
+		<div class="page_navigation"></div>
+	</div>
+	<h2>Wrap around, limited page links</h2>
+	<div class="example_3">
+		<div class="items">
+			<div class="item item1">
+				<div class="title">Slide 1</div>
+			</div>
+			<div class="item item2">
+				<div class="title">Slide 2</div>
+			</div>
+			<div class="item item3">
+				<div class="title">Slide 3</div>
+			</div>
+			<div class="item item4">
+				<div class="title">Slide 4</div>
+			</div>
+			<div class="item item5">
+				<div class="title">Slide 5</div>
+			</div>
+			<div class="item item6">
+				<div class="title">Slide 6</div>
+			</div>
+		</div>
+		<div class="page_navigation"></div>
+	</div>
+	<script src="js/purePajinate.min.js"></script>
+</body>
+</html>
