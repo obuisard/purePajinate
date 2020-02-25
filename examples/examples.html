@@ -5,33 +5,35 @@
 <title>PurePajinate examples</title>
 
 <script type="text/javascript">
-	document.addEventListener('DOMContentLoaded', function() {
-	  	var example_1 = new purePajinate({ 
-			containerSelector: '.example_1 .items', 
-			itemSelector: '.example_1 .items > div', 
-			navigationSelector: '.example_1 .page_navigation',
-			itemsPerPage: 3 
-		});
+	document.onreadystatechange = function() {
+		if (document.readyState === "complete") {
+			var example_1 = new purePajinate({ 
+				containerSelector: '.example_1 .items', 
+				itemSelector: '.example_1 .items > div', 
+				navigationSelector: '.example_1 .page_navigation',
+				itemsPerPage: 3 
+			});
 
-		var example_2 = new purePajinate({ 
-			containerSelector: '.example_2 .items', 
-			itemSelector: '.example_2 .items > div', 
-			navigationSelector: '.example_2 .page_navigation',
-			wrapAround: true,
-			showFirstLast: true,
-			itemsPerPage: 2 
-		});
+			var example_2 = new purePajinate({ 
+				containerSelector: '.example_2 .items', 
+				itemSelector: '.example_2 .items > div', 
+				navigationSelector: '.example_2 .page_navigation',
+				wrapAround: true,
+				showFirstLast: true,
+				itemsPerPage: 2 
+			});
 
-		var example_3 = new purePajinate({ 
-			containerSelector: '.example_3 .items', 
-			itemSelector: '.example_3 .items > div', 
-			navigationSelector: '.example_3 .page_navigation',
-			wrapAround: true,
-			pageLinksToDisplay: 3,
-			itemsPerPage: 1,
-			startPage: 4
-		});
-	});
+			var example_3 = new purePajinate({ 
+				containerSelector: '.example_3 .items', 
+				itemSelector: '.example_3 .items > div', 
+				navigationSelector: '.example_3 .page_navigation',
+				wrapAround: true,
+				pageLinksToDisplay: 3,
+				itemsPerPage: 1,
+				startPage: 4
+			});
+		}
+	};
 </script>
 
 <style>
@@ -161,6 +163,6 @@
 		</div>
 		<div class="page_navigation"></div>
 	</div>
-	<script src="js/purePajinate.min.js"></script>
+	<script src="js/purePajinate.es5.min.js"></script>
 </body>
 </html>
