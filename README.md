@@ -54,6 +54,9 @@ document.addEventListener('DOMContentLoaded', function() {
   var my_example = new purePajinate({ itemsPerPage: 2 });
 });
 ```
+
+The CSS class `loaded` is added to the container once the pagination has finished initializing.  
+
 ## Browser Support
 
 When using the Ecmascript 5 version, supports goes all the way back to Internet Explorer 10.
