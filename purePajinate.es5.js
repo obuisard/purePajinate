@@ -1,3 +1,11 @@
+/*
+ * A pure javascript class for paginating through any number of DOM elements
+ * v1.0.1
+ *
+ * @copyright	Copyright (C) 2011 Simplify Your Web, Inc. All rights reserved.
+ * @license	GNU General Public License version 3 or later; see LICENSE.txt
+ */
+
 "use strict";
 
 if (window.NodeList && !NodeList.prototype.forEach) {
@@ -503,7 +511,7 @@ var purePajinate =
             if (more != null) {
               more.style.display = "none";
 
-              if (this.isHidden(container.querySelector(".page_link.last"))) {
+              if (container.querySelector(".page_link.last") && this.isHidden(container.querySelector(".page_link.last"))) {
                 more.style.display = "inline";
               }
             }
@@ -513,7 +521,7 @@ var purePajinate =
             if (less != null) {
               less.style.display = "none";
 
-              if (this.isHidden(container.querySelector(".page_link.first"))) {
+              if (container.querySelector(".page_link.first") && this.isHidden(container.querySelector(".page_link.first"))) {
                 less.style.display = "inline";
               }
             }
@@ -529,7 +537,7 @@ var purePajinate =
             var first = container.querySelector(".first_link");
             var last = container.querySelector(".last_link");
 
-            if (
+            if (container.querySelector(".page_link.last") && 
               container
                 .querySelector(".page_link.last")
                 .classList.contains("active_page")
@@ -555,7 +563,7 @@ var purePajinate =
               }
             }
 
-            if (
+            if (container.querySelector(".page_link.first") && 
               container
                 .querySelector(".page_link.first")
                 .classList.contains("active_page")

@@ -1,10 +1,11 @@
 /*
  * A pure javascript class for paginating through any number of DOM elements
- * v1.0.0
+ * v1.0.1
  *
  * @copyright	Copyright (C) 2011 Simplify Your Web, Inc. All rights reserved.
  * @license	GNU General Public License version 3 or later; see LICENSE.txt
  */
+
 class purePajinate {
 	constructor(options) {
 		this.config = {
@@ -280,14 +281,14 @@ class purePajinate {
 			var more = container.querySelector('.more');
 			if (more != null) {
 				more.style.display = 'none';
-				if (this.isHidden(container.querySelector('.page_link.last'))) {
+				if (container.querySelector('.page_link.last') && this.isHidden(container.querySelector('.page_link.last'))) {
 					more.style.display = 'inline';
 				}
 			}
 			var less = container.querySelector('.less');
 			if (less != null) {
 				less.style.display = 'none';
-				if (this.isHidden(container.querySelector('.page_link.first'))) {
+				if (container.querySelector('.page_link.first') && this.isHidden(container.querySelector('.page_link.first'))) {
 					less.style.display = 'inline';
 				}
 			}
@@ -299,7 +300,7 @@ class purePajinate {
 			var previous = container.querySelector('.previous_link');
 			var first = container.querySelector('.first_link');
 			var last = container.querySelector('.last_link');
-			if (container.querySelector('.page_link.last').classList.contains('active_page')) {
+			if (container.querySelector('.page_link.last') && container.querySelector('.page_link.last').classList.contains('active_page')) {
 				if (next != null) {
 					next.classList.add('no_more');
 					next.classList.add(this.config.disabledClass);
@@ -319,7 +320,7 @@ class purePajinate {
 					last.classList.remove(this.config.disabledClass);
 				}
 			}
-			if (container.querySelector('.page_link.first').classList.contains('active_page')) {
+			if (container.querySelector('.page_link.first') && container.querySelector('.page_link.first').classList.contains('active_page')) {
 				if (previous != null) {
 					previous.classList.add('no_more');
 					previous.classList.add(this.config.disabledClass);
