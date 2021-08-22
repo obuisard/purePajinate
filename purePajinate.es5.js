@@ -252,10 +252,12 @@ var purePajinate =
             });
             /* Set the active page link styling */
 
-            var first_page = el.querySelector(".previous_link")
-              .nextElementSibling.nextElementSibling;
-            first_page.classList.add("active_page");
-            first_page.classList.add(this.config.activeClass);
+            if(el.querySelector(".previous_link")) {
+                var first_page = el.querySelector(".previous_link")
+                    .nextElementSibling.nextElementSibling;
+                first_page.classList.add("active_page");
+                first_page.classList.add(this.config.activeClass);
+            }
             this.total_page_no_links = page_links.length;
             this.config.pageLinksToDisplay = Math.min(
               this.config.pageLinksToDisplay,
