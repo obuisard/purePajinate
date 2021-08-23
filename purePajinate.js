@@ -1,6 +1,6 @@
 /*
  * A pure javascript class for paginating through any number of DOM elements
- * v1.0.1
+ * v1.0.2
  *
  * @copyright	Copyright (C) 2011 Simplify Your Web, Inc. All rights reserved.
  * @license	GNU General Public License version 3 or later; see LICENSE.txt
@@ -20,6 +20,10 @@ class purePajinate {
 			navLabelPrev: 'Prev',
 			navLabelNext: 'Next',
 			navLabelLast: 'Last',
+			navAriaLabelFirst: 'First',
+			navAriaLabelPrev: 'Prev',
+			navAriaLabelNext: 'Next',
+			navAriaLabelLast: 'Last',
 			navOrder: ["first", "prev", "num", "next", "last"],
 			showFirstLast: false,
 			showPrevNext: true,
@@ -58,10 +62,10 @@ class purePajinate {
 		/* Construct the navigation bar */
 		var more = '<li class="ellipse more"><span>...</span></li>';
 		var less = '<li class="ellipse less"><span>...</span></li>';
-		var first = !this.config.showFirstLast ? '' : '<li class="first_link ' + this.config.defaultClass + '"><a href="" onclick="return false;">' + this.config.navLabelFirst + '</a></li>';
-		var last = !this.config.showFirstLast ? '' : '<li class="last_link ' + this.config.defaultClass + '"><a href="" onclick="return false;">' + this.config.navLabelLast + '</a></li>';
-		var previous = !this.config.showPrevNext ? '' : '<li class="previous_link ' + this.config.defaultClass + '"><a href="" onclick="return false;">' + this.config.navLabelPrev + '</a></li>';
-		var next = !this.config.showPrevNext ? '' : '<li class="next_link ' + this.config.defaultClass + '"><a href="" onclick="return false;">' + this.config.navLabelNext + '</a></li>';
+		var first = !this.config.showFirstLast ? '' : '<li class="first_link ' + this.config.defaultClass + '"><a href="" aria-label="' + this.config.navAriaLabelFirst + '" onclick="return false;">' + this.config.navLabelFirst + '</a></li>';
+		var last = !this.config.showFirstLast ? '' : '<li class="last_link ' + this.config.defaultClass + '"><a href="" aria-label="' + this.config.navAriaLabelLast + '" onclick="return false;">' + this.config.navLabelLast + '</a></li>';
+		var previous = !this.config.showPrevNext ? '' : '<li class="previous_link ' + this.config.defaultClass + '"><a href="" aria-label="' + this.config.navAriaLabelPrev + '" onclick="return false;">' + this.config.navLabelPrev + '</a></li>';
+		var next = !this.config.showPrevNext ? '' : '<li class="next_link ' + this.config.defaultClass + '"><a href="" aria-label="' + this.config.navAriaLabelNext + '" onclick="return false;">' + this.config.navLabelNext + '</a></li>';
 		var navigation_html = '<ul>';
 		for (let i = 0; i < this.config.navOrder.length; i++) {
 			switch (this.config.navOrder[i]) {
@@ -90,7 +94,7 @@ class purePajinate {
 						if (current_link == number_of_pages - 1) {
 							extra_class = ' last';
 						}
-						navigation_html += '<li class="page_link' + extra_class + ' ' + this.config.defaultClass + '" longdesc="' + current_link + '"><a href="" onclick="return false;"><span>' + (current_link + 1) + '</span></a></li>';
+						navigation_html += '<li class="page_link' + extra_class + ' ' + this.config.defaultClass + '" longdesc="' + current_link + '"><a href="" aria-label="' + (current_link + 1) + '" onclick="return false;"><span>' + (current_link + 1) + '</span></a></li>';
 						current_link++;
 					}
 					if (this.config.showPrevNext) {
@@ -105,7 +109,6 @@ class purePajinate {
 			el.innerHTML = navigation_html;
 			/* Show a subset of page links */
 			var page_links = el.querySelectorAll('.page_link');
-			var min = Math.min(page_links.length, this.config.pageLinksToDisplay);
 			for (let i = 0; i < page_links.length; i++) {
 				if (i >= this.config.pageLinksToDisplay + this.config.startPage || i < this.config.startPage) {
 					page_links[i].style.display = 'none';
@@ -116,9 +119,11 @@ class purePajinate {
 				ellipses.style.display = 'none';
 			});
 			/* Set the active page link styling */
-			var first_page = el.querySelector('.previous_link').nextElementSibling.nextElementSibling;
-			first_page.classList.add('active_page');
-			first_page.classList.add(this.config.activeClass);
+			if (page_links.length > 0) {
+            	var first_page = page_links[0];
+            	first_page.classList.add('active_page');
+            	first_page.classList.add(this.config.activeClass);
+            }
 			this.total_page_no_links = page_links.length;
 			this.config.pageLinksToDisplay = Math.min(this.config.pageLinksToDisplay, this.total_page_no_links);
 			const that = this; /* avoids bind(this) in function(e) { }.bind(this) */
@@ -127,7 +132,7 @@ class purePajinate {
 				el.querySelector('.first_link').addEventListener('click', function (e) {
 					e.preventDefault();
 					that.showFirstPage(el);
-				});
+				});			
 				/* Event handler for 'Last' link */
 				el.querySelector('.last_link').addEventListener('click', function (e) {
 					e.preventDefault();
@@ -140,10 +145,23 @@ class purePajinate {
 					e.preventDefault();
 					that.showPrevPage(el);
 				});
+				
+				el.querySelector('.previous_link').addEventListener('keydown', function (e) {
+					if (e.keyCode == 37) {
+						this.click();
+					}
+				});
+				
 				/* Event handler for 'Next' link */
 				el.querySelector('.next_link').addEventListener('click', function (e) {
 					e.preventDefault();
 					that.showNextPage(el);
+				});
+				
+				el.querySelector('.next_link').addEventListener('keydown', function (e) {
+					if (e.keyCode == 39) {
+						this.click();
+					}
 				});
 			}
 			/* Event handler for each 'Page' link */

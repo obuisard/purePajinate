@@ -20,6 +20,10 @@ Inspired by [Pajinate](https://github.com/wesnolte/Pajinate), a plugin for jQuer
 | `navLabelPrev` | String | Default: `'Prev'`. <br> The label for the previous control. |
 | `navLabelNext` | String | Default: `'Next'`. <br> The label for the next control. |
 | `navLabelLast` | String | Default: `'Last'`. <br> The label for the last control. |
+| `navAriaLabelFirst` | String | Default: `'First'`. <br> The aria label for the first control. |
+| `navAriaLabelPrev` | String | Default: `'Prev'`. <br> The aria label for the previous control. |
+| `navAriaLabelNext` | String | Default: `'Next'`. <br> The aria label for the next control. |
+| `navAriaLabelLast` | String | Default: `'Last'`. <br> The aria label for the last control. |
 | `navOrder` | Array | Default: `["first", "prev", "num", "next", "last"]`. <br> The order of the controls. 'num' represents the page links. |
 | `showFirstLast` | Boolean | Default: `false`. <br> Determine if the first and last controls will show or not. |
 | `showPrevNext` | Boolean | Default: `true`. <br> Determine if the previous and next controls will show or not. |
